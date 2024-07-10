@@ -1,13 +1,15 @@
+import cors from "@fastify/cors";
 import fastify from 'fastify';
-import { createTrip } from './routes/create-trip';
 import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
-import { confirmTrip } from './routes/confirm-trip';
-import cors from "@fastify/cors"
 import { confirmParticipants } from './routes/confirm-participant';
+import { confirmTrip } from './routes/confirm-trip';
 import { createActivity } from './routes/create-activity';
-import { getActivities } from './routes/get-activities';
 import { createLink } from './routes/create-link';
+import { createTrip } from './routes/create-trip';
+import { getActivities } from './routes/get-activities';
 import { getLinks } from './routes/get-links';
+import { getParticipants } from './routes/get-participants';
+import { createInvite } from "./routes/create-invite";
 
 const app = fastify();
 
@@ -25,6 +27,8 @@ app.register(createActivity)
 app.register(getActivities)
 app.register(createLink)
 app.register(getLinks)
+app.register(getParticipants)
+app.register(createInvite)
 
 app.listen({port: 3333}).then(() => {
   console.log("Server running");
