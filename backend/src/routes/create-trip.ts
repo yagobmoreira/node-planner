@@ -5,6 +5,7 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { getMailClient } from "../lib/mail";
 import nodemailer from "nodemailer";
 import { dayjs } from "../lib/dayjs";
+import { ClientError } from "../errors/client-error";
 
 
 
@@ -36,11 +37,11 @@ export async function createTrip(app: FastifyInstance) {
       console.log(new Date(), starts_at, dayjs(starts_at).isBefore(new Date()));
 
       if (dayjs(starts_at).isBefore(new Date())) {
-        throw new Error("Invalid trip start date.");
+        throw new ClientError("Invalid trip start date.");
       }
 
       if (dayjs(ends_at).isBefore(starts_at)) {
-        throw new Error("Invalid trip end date.");
+        throw new ClientError("Invalid trip end date.");
       }
 
       const trip = await prisma.trip.create({
