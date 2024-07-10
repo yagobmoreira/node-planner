@@ -1,6 +1,8 @@
 import cors from "@fastify/cors";
 import fastify from 'fastify';
 import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
+import { env } from "./env";
+import { errorHandler } from "./error-handler";
 import { confirmParticipants } from './routes/confirm-participant';
 import { confirmTrip } from './routes/confirm-trip';
 import { createActivity } from './routes/create-activity';
@@ -13,7 +15,7 @@ import { getParticipant } from "./routes/get-participant";
 import { getParticipants } from './routes/get-participants';
 import { getTripDetails } from "./routes/get-trip-details";
 import { updateTrip } from "./routes/update-trip";
-import { errorHandler } from "./error-handler";
+
 
 const app = fastify();
 
@@ -39,6 +41,6 @@ app.register(updateTrip)
 app.register(getTripDetails)
 app.register(getParticipant)
 
-app.listen({port: 3333}).then(() => {
-  console.log("Server running");
+app.listen({port: env.PORT}).then(() => {
+  console.log(`Server running on 3333`);
 })
