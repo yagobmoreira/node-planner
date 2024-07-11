@@ -1,12 +1,13 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { Activities } from "./activities";
 import { CreateActivityModal } from "./create-activity-modal";
+import { CreateInviteModal } from "./create-invite-modal";
+import { CreateLinkModal } from "./create-link-modal";
+import { DestinationAndDateHeader } from "./destination-and-date-header";
 import { Guests } from "./guests";
 import { ImportantLinks } from "./important-links";
-import { Activities } from "./activities";
-import { DestinationAndDateHeader } from "./destination-and-date-header";
-import { CreateLinkModal } from "./create-link-modal";
-import { CreateInviteModal } from "./create-invite-modal";
+import { UpdateDestinationAndDateModal } from "./update-destination-and-date-modal";
 
 export function TripDetailsPage() {
   const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] =
@@ -15,6 +16,19 @@ export function TripDetailsPage() {
   const [isCreateLinkModalOpen, setIsCreateLinkModalOpen] = useState(false);
 
   const [isCreateInviteModalOpen, setIsCreateInviteModalOpen] = useState(false);
+
+  const [
+    isUpdateDestinationAndDateModalOpen,
+    setIsUpdateDestinationAndDateModalOpen,
+  ] = useState(false);
+
+  function openUpdateDestinationAndDateModal() {
+    setIsUpdateDestinationAndDateModalOpen(true);
+  }
+
+  function closeUpdateDestinationAndDateModal() {
+    setIsUpdateDestinationAndDateModalOpen(false);
+  }
 
   function openCreateInviteModal() {
     setIsCreateInviteModalOpen(true);
@@ -42,7 +56,9 @@ export function TripDetailsPage() {
 
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
-      <DestinationAndDateHeader />
+      <DestinationAndDateHeader
+        openUpdateDestinationAndDateModal={openUpdateDestinationAndDateModal}
+      />
 
       <main className="flex gap-16 px-6">
         <div className="flex-1 space-y-6">
@@ -63,7 +79,7 @@ export function TripDetailsPage() {
         <div className="w-80 space-y-6">
           <ImportantLinks openCreateLinkModal={openCreateLinkModal} />
           <div className="w-full h-px bg-zinc-800"></div>
-          <Guests openCreateInviteModal={openCreateInviteModal}/>
+          <Guests openCreateInviteModal={openCreateInviteModal} />
         </div>
 
         {isCreateActivityModalOpen && (
@@ -77,7 +93,15 @@ export function TripDetailsPage() {
         )}
 
         {isCreateInviteModalOpen && (
-          <CreateInviteModal closeCreateInviteModal={ closeCreateInviteModal }/>
+          <CreateInviteModal closeCreateInviteModal={closeCreateInviteModal} />
+        )}
+
+        {isUpdateDestinationAndDateModalOpen && (
+          <UpdateDestinationAndDateModal
+            closeUpdateDestinationAndDateModal={
+              closeUpdateDestinationAndDateModal
+            }
+          />
         )}
       </main>
     </div>
