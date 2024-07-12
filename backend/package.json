@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tsx watch src/server.ts"
+    "dev": "npx tsx watch src/server.ts",
+    "build": "tsc",
+    "pre-start": "npx prisma generate",
+    "start": "node build/server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,13 +16,13 @@
   "devDependencies": {
     "@types/node": "^20.14.10",
     "@types/nodemailer": "^6.4.15",
-    "prisma": "^5.16.1",
+    "prisma": "^5.16.2",
     "tsx": "^4.16.2",
     "typescript": "^5.5.3"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",
-    "@prisma/client": "^5.16.1",
+    "@prisma/client": "^5.16.2",
     "dayjs": "^1.11.11",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.1",

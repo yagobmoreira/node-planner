@@ -1,0 +1,22 @@
+{
+  "name": "nlw_journey",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install:backend": "cd backend && npm i",
+    "install:frontend": "cd frontend && npm i",
+    "install:apps": "npm run install:backend && npm run install:frontend",
+    "pre-start:backend": "cd backend && npm run pre-start",
+    "build:backend": "cd backend && npm run build",
+    "start:backend": "cd backend && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "compose:up": "docker compose up -d --build",
+    "compose:down": "docker compose down --remove-orphans"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

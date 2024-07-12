@@ -20,8 +20,9 @@ import { updateTrip } from "./routes/update-trip";
 const app = fastify();
 
 app.register(cors, {
-  origin: '*'
-})
+  origin: "*",
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH']
+});
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
@@ -41,6 +42,6 @@ app.register(updateTrip)
 app.register(getTripDetails)
 app.register(getParticipant)
 
-app.listen({port: env.PORT}).then(() => {
-  console.log(`Server running on 3333`);
+app.listen({port: env.PORT, host: '0.0.0.0'}).then(() => {
+  console.log(`Server running on ${env.PORT}`);
 })
