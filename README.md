@@ -40,11 +40,11 @@ Passo a passo para clonar e executar a aplicação na sua máquina:
 ```bash
   npm run install:apps
 ```
-4. Rode o Back-end da aplicação em modo desenvolvimento:
+4. Execute o Back-end da aplicação em modo desenvolvimento:
 ```bash
   npm run dev:backend
 ```
-5. Rode o Front-end da aplicação em modo desenvolvimento:
+5. Execute o Front-end da aplicação em modo desenvolvimento:
 ```bash
   npm run dev:frontend
 ```
